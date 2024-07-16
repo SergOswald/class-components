@@ -1,10 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
-// return fetch("https://jsonplaceholder.typicode.com/users")
+import SearchData from "./SearchData.jsx";
 
 function App() {
   const [data, setData] = useState([]);
+
+   console.log(data[0])
 
   function fetchData() {
     return fetch("https://swapi.dev/api/people/")
@@ -17,17 +18,27 @@ function App() {
   }, []);
 
   const [query, setQuery] = useState("");
-  const search_parameters = Object.keys(Object.assign({}, ...data));
 
-  console.log(search_parameters)
+  {
+    /*
 
-  function search(data) {
+   const search_parameters = Object.keys(Object.assign({}, ...data));
+   
+    function search(data) {
     return data.filter((data) =>
-      search_parameters.some((parameter) =>
-        data[parameter].toString().toLowerCase().includes(query)
+      search_parameters.some((a) =>
+        data[a].toString().toLowerCase().includes(query)
       )
     );
   }
+  */
+  }
+
+  //  console.log(search(data))
+
+  const [value, setValue] = useState("");
+
+
 
   return (
     <>
@@ -42,29 +53,34 @@ function App() {
             name="search-form"
             id="search-form"
             className="search-input"
-            onChange={(e) => setQuery(e.target.value)}
+            //onChange={(e) => setQuery(e.target.value)}
             placeholder="Search user"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
-          <button>Search</button>
+          <button onClick={() => setQuery(value)}>Search</button>
         </div>
 
         <center>
-          {search(data).map((dataObj) => {
+
+          <SearchData data={data} query={query} />
+
+          {/* {search(data).map((dataObj) => {
             return (
               <div className="box">
-                <div class="card">
-                  <div class="category">{dataObj.name} </div>
-                  <div class="heading">
-                    <p class="">{dataObj.name}</p>
-                    <p class="">{dataObj.height}</p>
-                    <p class="">{dataObj.mass}</p>
-                    <p class="">{dataObj.hair_color}</p>
-                    <p class="">{dataObj.skin_color}</p>
+                <div className="card">
+                  <div className="category">{dataObj.name} </div>
+                  <div className="heading">
+                    <p className="">Name: {dataObj.name}</p>
+                    <p className="">Height: {dataObj.height}</p>
+                    <p className="">Mass: {dataObj.mass}</p>
+                    <p className="">Hair color: {dataObj.hair_color}</p>
+                    <p className="">Skin color: {dataObj.skin_color}</p>
                   </div>
                 </div>
               </div>
             );
-          })}
+          })} */}
         </center>
       </div>
     </>
@@ -72,3 +88,4 @@ function App() {
 }
 
 export default App;
+
