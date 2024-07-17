@@ -1,14 +1,11 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
-// return fetch("https://jsonplaceholder.typicode.com/users")
+import SearchData from "./SearchData.jsx";
 
 function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [value, setValue] = useState("");
-
-  // console.log(query);
 
   function fetchData() {
     return fetch("https://swapi.dev/api/people/")
@@ -20,20 +17,8 @@ function App() {
     fetchData();
   }, []);
 
-  const search_parameters = Object.keys(Object.assign({}, ...data));
+ // console.log(data)
 
-  // console.log(search_parameters);
-
-  //  console.log(data); // массив объектов
-
-  function search(data: any[]) {
-    return data.filter((data) =>
-      search_parameters.some((index) =>
-        //       data[parameter].toString().toLowerCase().includes(query)
-        data[index].toString().includes(query)
-      )
-    );
-  }
 
   return (
     <>
@@ -48,31 +33,16 @@ function App() {
             name="search-form"
             id="search-form"
             className="search-input"
-            onChange={(e) => setValue(e.target.value)}
-            //   onChange={(e) => setQuery(e.target.value)}
             placeholder="Search user"
             value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
           <button onClick={() => setQuery(value)}>Search</button>
         </div>
 
         <center>
-          {search(data).map((dataObj) => {
-            return (
-              <div className="box">
-                <div className="card">
-                  <div className="category">{dataObj.name} </div>
-                  <div className="heading">
-                    <p className="">{dataObj.name}</p>
-                    <p className="">{dataObj.height}</p>
-                    <p className="">{dataObj.mass}</p>
-                    <p className="">{dataObj.hair_color}</p>
-                    <p className="">{dataObj.skin_color}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          { <SearchData data={data} query={query} /> }
+
         </center>
       </div>
     </>

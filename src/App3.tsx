@@ -1,41 +1,39 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchData from "./SearchData.jsx";
+
+// return fetch("https://jsonplaceholder.typicode.com/users")
 
 function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [value, setValue] = useState("");
 
-  async function fetchData() {
-    const a = await fetch("https://swapi.dev/api/people/");
-    const b = await a.json();
-    return setData(b.results);
+  // console.log(query);
+
+  function fetchData() {
+    return fetch("https://swapi.dev/api/people/")
+      .then((a) => a.json())
+      .then((b) => setData(b.results));
   }
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(data[0]);
+  const search_parameters = Object.keys(Object.assign({}, ...data));
 
-  {
-    /*
+  // console.log(search_parameters);
 
-   const search_parameters = Object.keys(Object.assign({}, ...data));
-   
-    function search(data) {
+  //  console.log(data); // массив объектов
+
+  function search(data: any[]) {
     return data.filter((data) =>
-      search_parameters.some((a) =>
-        data[a].toString().toLowerCase().includes(query)
+      search_parameters.some((index) =>
+        //       data[parameter].toString().toLowerCase().includes(query)
+        data[index].toString().includes(query)
       )
     );
   }
-  */
-  }
-
-  //  console.log(search(data))
-
 
   return (
     <>
@@ -50,33 +48,31 @@ function App() {
             name="search-form"
             id="search-form"
             className="search-input"
-            //onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
+            //   onChange={(e) => setQuery(e.target.value)}
             placeholder="Search user"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
           />
           <button onClick={() => setQuery(value)}>Search</button>
         </div>
 
         <center>
-          <SearchData data={data} query={query} />
-
-          {/* {search(data).map((dataObj) => {
+          {search(data).map((dataObj) => {
             return (
               <div className="box">
                 <div className="card">
                   <div className="category">{dataObj.name} </div>
                   <div className="heading">
-                    <p className="">Name: {dataObj.name}</p>
-                    <p className="">Height: {dataObj.height}</p>
-                    <p className="">Mass: {dataObj.mass}</p>
-                    <p className="">Hair color: {dataObj.hair_color}</p>
-                    <p className="">Skin color: {dataObj.skin_color}</p>
+                    <p className="">{dataObj.name}</p>
+                    <p className="">{dataObj.height}</p>
+                    <p className="">{dataObj.mass}</p>
+                    <p className="">{dataObj.hair_color}</p>
+                    <p className="">{dataObj.skin_color}</p>
                   </div>
                 </div>
               </div>
             );
-          })} */}
+          })}
         </center>
       </div>
     </>
