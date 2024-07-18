@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchDataFun from "./SearchDataFun.jsx";
+import SearchData from "./SearchData.jsx";
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
     fetchData();
   }, []);
 
-//console.log(data)
+console.log(data)
 
 
   return (
@@ -42,7 +42,7 @@ function App() {
         </div>
 
         <center>
-        { <SearchDataFun data={data} query={query}/> }
+        { <SearchData /> }
 
         </center>
       </div>
