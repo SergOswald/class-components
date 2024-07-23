@@ -42,7 +42,7 @@ function App() {
         </div>
 
         <center>
-        { <SearchData data={data} query={query}/> }
+        { <SearchDataFun data={data} query={query}/> }
 
         </center>
       </div>
