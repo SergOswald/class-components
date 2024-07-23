@@ -1,63 +1,53 @@
-import { Component } from 'react';
-import SearchComponent from './SearchComponent';
-import ResultsComponent from './ResultsComponent';
-import ErrorBoundary from './ErrorBoundary';
+import "./App.css";
+import { useEffect, useState } from "react";
+import SearchDataFun from "./SearchDataFun.jsx";
 
-class App extends Component {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      results: [],
-      error: null,
-    };
+function App() {
+
+  const [data, setData] = useState([]);
+  const [query, setQuery] = useState("");
+  const [value, setValue] = useState("");
+
+  function fetchData() {
+    return fetch("https://swapi.dev/api/people/")
+      .then((a) => a.json())
+      .then((b) => setData(b.results));
   }
 
-  componentDidMount() {
-    this.fetchResults(localStorage.getItem('searchTerm') || '');
-  }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  fetchResults = (searchTerm: string) => {
+// console.log(data) массив объектов работает
 
-    const apiUrl = searchTerm
-      ? `https://swapi.dev/api/people/search?query=${searchTerm}`
-      : 'https://swapi.dev/api/people/results';
+// не выводит то что в ретен сдался 22-07-2024 app3.tsx выводит все
+  return (
+    <>
+      <div className="container">
+        <center>
+          <h1>React project setup. Class components. Error boundary.</h1>
+        </center>
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => this.setState({ results: data.results }))
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        this.setState({ error });
-      });
-  }
-
-  handleSearch = (searchTerm) => {
-    this.fetchResults(searchTerm);
-  }
-
-  throwError = () => {
-    throw new Error('Test error');
-  }
-
-  render() {
-    if (this.state.error) {
-      return <p>Something went wrong.</p>;
-    }
-
-    return (
-      <ErrorBoundary>
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-          <div style={{ flex: '1' }}>
-            <SearchComponent onSearch={this.handleSearch} />
-          </div>
-          <div style={{ flex: '3', overflowY: 'auto' }}>
-            <ResultsComponent results={this.state.results} />
-          </div>
-          <button onClick={this.throwError}>Throw Error</button>
+        <div className="input-box">
+          <input
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input"
+            placeholder="Search user"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+          <button onClick={() => setQuery(value)}>Search</button>
         </div>
-      </ErrorBoundary>
-    );
-  }
+
+        <center>
+        { <SearchDataFun data={data} query={query}/> }
+
+        </center>
+      </div>
+    </>
+  );
 }
 
 export default App;

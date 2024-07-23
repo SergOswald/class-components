@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchDataFun from "./SearchDataFun.jsx";
+import SearchData from "./SearchDataFun.jsx";
 
 function App() {
 
@@ -8,19 +8,19 @@ function App() {
   const [query, setQuery] = useState("");
   const [value, setValue] = useState("");
 
-  async function fetchData() {
-    const a = await fetch("https://swapi.dev/api/people/");
-    const b = await a.json();
-    return setData(b.results);
+  function fetchData() {
+    return fetch("https://swapi.dev/api/people/")
+      .then((a) => a.json())
+      .then((b) => setData(b.results));
   }
 
   useEffect(() => {
     fetchData();
   }, []);
 
-//console.log(data)
+// console.log(data) массив объектов работает
 
-
+// не выводит то что в ретен сдался 22-07-2024 app3.tsx выводит все
   return (
     <>
       <div className="container">
@@ -42,7 +42,7 @@ function App() {
         </div>
 
         <center>
-        { <SearchDataFun data={data} query={query}/> }
+        { <SearchData data={data} query={query}/> }
 
         </center>
       </div>

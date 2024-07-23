@@ -1,44 +1,39 @@
 import React, { Component } from "react";
 
 class SearchData extends Component {
-  constructor( props ) {
-  super(props);
-  this.data = data;
-  this.query = query;
+  constructor(props) {
+    super(props);
+    this.data = data;
+    this.query = query;
   }
-
-  
-
-render() {
 
   search_parameters = Object.keys(Object.assign({}, ...this.props.data));
 
-  search = (data) => {
-    data.filter((data) => search_parameters.some((index) =>
-        data[index].toString().includes(query) )
+  search(d, q) {
+    return d.filter((d) =>
+      search_parameters.some((index) => d[index].toString().includes(q))
     );
   }
-
-search(this.props.data).map((dataObj) => {
-return (
-<div className="box">
-<div className="card">
-<div className="category">{dataObj.name} </div>
-<div className="heading">
-<p className="">Name: {dataObj.name}</p>
-<p className="">Height: {dataObj.height}</p>
-<p className="">Mass: {dataObj.mass}</p>
-<p className="">Hair color: {dataObj.hair_color}</p>
-<p className="">Skin color: {dataObj.skin_color}</p>
-</div>
-</div>
-</div>
-);
-});
+  render() {
+    return (
+      <div>
+        {search(this.props.data, this.props.query).map((dataObj) => (
+          <div className="box">
+            <div className="card">
+              <div className="category">{dataObj.name} </div>
+              <div className="heading">
+                <p className="">{dataObj.name}</p>
+                <p className="">{dataObj.height}</p>
+                <p className="">{dataObj.mass}</p>
+                <p className="">{dataObj.hair_color}</p>
+                <p className="">{dataObj.skin_color}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
-
-
-}
-
 
 export default SearchData;
