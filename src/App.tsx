@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchData from "./SearchDataFun.jsx";
+import SearchDataFun from "./SearchDataFun.jsx";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
     <>
       <div className="container">
         <center>
-          <h1>React project setup. Class components. Error boundary.</h1>
+          <h1>Redux. Redux Toolkit, RTK Query. Context api. Task #3.</h1>
         </center>
 
         <div className="input-box">
