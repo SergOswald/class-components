@@ -1,9 +1,10 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import SearchDataFun from "./SearchDataFun.jsx";
+import Counter from "./Counter.jsx";
+
 
 function App() {
-
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [value, setValue] = useState("");
@@ -18,9 +19,6 @@ function App() {
     fetchData();
   }, []);
 
-// console.log(data) массив объектов работает
-
-// не выводит то что в ретен сдался 22-07-2024 app3.tsx выводит все
   return (
     <>
       <div className="container">
@@ -39,12 +37,10 @@ function App() {
             onChange={(e) => setValue(e.target.value)}
           />
           <button onClick={() => setQuery(value)}>Search</button>
+          <Counter />
         </div>
 
-        <center>
-        { <SearchDataFun data={data} query={query}/> }
-
-        </center>
+        <center>{<SearchDataFun data={data} query={query} />}</center>
       </div>
     </>
   );
