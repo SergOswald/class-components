@@ -20,7 +20,7 @@ body {
   position: relative;
   border: 5px solid white ;
   margin: 10px 10px 0 10px;
-  background-color: aquamarine; 
+  /* background-color: aquamarine;  */
   font-size: 1.2em;
   text-align: center;
 }

@@ -17,11 +17,11 @@ function SearchDataFun(props) {
           <div className="card">
             <div className="category">{dataObj.name} </div>
             <div className="heading">
-              <p className="">{dataObj.name}</p>
-              <p className="">{dataObj.height}</p>
-              <p className="">{dataObj.mass}</p>
-              <p className="">{dataObj.hair_color}</p>
-              <p className="">{dataObj.skin_color}</p>
+              <p className="">name: {dataObj.name}</p>
+              <p className="">height: {dataObj.height}</p>
+              <p className="">mass: {dataObj.mass}</p>
+              <p className="">hair color: {dataObj.hair_color}</p>
+              <p className="">skin color: {dataObj.skin_color}</p>
             </div>
         </div>
       ))}
