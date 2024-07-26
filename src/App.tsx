@@ -22,25 +22,30 @@ function App() {
   return (
     <>
       <div className="container">
-        <center>
-          <h1>Redux. Redux Toolkit, RTK Query. Context api. Task #3.</h1>
-        </center>
+        <header>
+          <h1 className="header">Redux. Redux Toolkit, RTK Query. Context api. Task #3.</h1>
+        </header>
+        <main>
+            <div className="input-button">
+              <input
+                type="search"
+                name="search-form"
+                id="search-form"
+                className="search-input"
+                placeholder="Search user"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+              <button onClick={() => setQuery(value)}>Search</button>
+            </div>
+            <div className="box">
+              <SearchDataFun data={data} query={query}/>
+            </div>
 
-        <div className="input-box">
-          <input
-            type="search"
-            name="search-form"
-            id="search-form"
-            className="search-input"
-            placeholder="Search user"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <button onClick={() => setQuery(value)}>Search</button>
+        </main>
+        <footer>
           <Counter />
-        </div>
-
-        <center>{<SearchDataFun data={data} query={query} />}</center>
+        </footer>
       </div>
     </>
   );

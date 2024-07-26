@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import "./App.css";
 
 function SearchDataFun(props) {
   const search_parameters = Object.keys(Object.assign({}, ...props.data));
-
-  // console.log(search_parameters); массив ключей работатет
 
   function search(d, q) {
     return d.filter((d) =>
@@ -14,7 +13,7 @@ function SearchDataFun(props) {
   return (
     <div>
       {search(props.data, props.query).map((dataObj) => (
-        <div className="box">
+
           <div className="card">
             <div className="category">{dataObj.name} </div>
             <div className="heading">
@@ -24,7 +23,6 @@ function SearchDataFun(props) {
               <p className="">{dataObj.hair_color}</p>
               <p className="">{dataObj.skin_color}</p>
             </div>
-          </div>
         </div>
       ))}
     </div>
