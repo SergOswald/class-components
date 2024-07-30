@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import CheckboxComponent from './CheckboxComponent';
 
 function SearchDataFun(props) {
   const search_parameters = Object.keys(Object.assign({}, ...props.data));
@@ -23,6 +24,7 @@ function SearchDataFun(props) {
               <p className="">hair color: {dataObj.hair_color}</p>
               <p className="">skin color: {dataObj.skin_color}</p>
             </div>
+            <CheckboxComponent />
         </div>
       ))}
     </div>

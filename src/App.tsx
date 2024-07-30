@@ -2,8 +2,6 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import SearchDataFun from "./SearchDataFun.jsx";
 import Counter from "./Counter.jsx";
-import FunctionContextComponent from "./FunctionContextComponent"
-import ClassContextComponent from "./ClassContextComponent"
 
 export const ThemeContext = React.createContext()
 
@@ -64,7 +62,7 @@ function App() {
 
             </main>
             <footer>
-              <Counter />
+              {/* <Counter /> */}
             </footer>
           </div>
         </div>
