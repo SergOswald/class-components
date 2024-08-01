@@ -62,7 +62,7 @@ function App() {
 
             </main>
             <footer>
-              {/* <Counter /> */}
+              {<Counter />}
             </footer>
           </div>
         </div>
