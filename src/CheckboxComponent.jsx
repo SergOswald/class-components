@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import { increment } from './counterSlice';
 
 
-const CheckboxComponent = () => {
-//  const [isChecked, setIsChecked] = useState(false);
+const CheckboxComponent = ({ dataObj, selectedData, setSelectedData }) => {
 
 const [isChecked, setIsChecked] = useState(false);
 const dispatch = useDispatch();
@@ -12,7 +11,10 @@ const dispatch = useDispatch();
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
     if (event.target.checked) {
+      setSelectedData([...selectedData, dataObj]);
       dispatch(increment());
+    } else {
+      setSelectedData(selectedData.filter(item => item.name !== dataObj.name));
     }
   };
 

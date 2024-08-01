@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import CheckboxComponent from './CheckboxComponent';
 
-function SearchDataFun(props) {
-  const search_parameters = Object.keys(Object.assign({}, ...props.data));
+function SearchDataFun({ data, query, setSelectedData, selectedData }) {
+  const search_parameters = Object.keys(Object.assign({}, ...data));
 
   function search(d, q) {
     return d.filter((d) =>
@@ -13,9 +13,9 @@ function SearchDataFun(props) {
 
   return (
     <div>
-      {search(props.data, props.query).map((dataObj) => (
+      {search(data, query).map((dataObj) => (
 
-          <div className="card">
+          <div className="card" key={dataObj.name}>
             <div className="category">{dataObj.name} </div>
             <div className="heading">
               <p className="">name: {dataObj.name}</p>
@@ -24,7 +24,7 @@ function SearchDataFun(props) {
               <p className="">hair color: {dataObj.hair_color}</p>
               <p className="">skin color: {dataObj.skin_color}</p>
             </div>
-            <CheckboxComponent />
+            <CheckboxComponent dataObj={dataObj} selectedData={selectedData} setSelectedData={setSelectedData} />
         </div>
       ))}
     </div>
