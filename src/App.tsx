@@ -65,17 +65,18 @@ function App() {
                 <button onClick={() => setQuery(value)}>Search</button>
               </div>
               <div className="box">
-                <SearchDataFun data={data} query={query} setSelectedData={setSelectedData} selectedData={selectedData}/>
+                <SearchDataFun data={data} query={query} setSelectedData={setSelectedData} selectedData={selectedData} />
               </div>
 
             </main>
             <footer>
-              {<Counter />}
+              {<Counter/>}
               <button onClick={downloadExcel}>Download</button>
             </footer>
           </div>
         </div>
       </ThemeContext.Provider>
+
     </>
   );
 }

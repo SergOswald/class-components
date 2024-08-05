@@ -8,15 +8,6 @@ const Counter = () => {
 
   return (
     <div>
-      {/* <div>
-        <button onClick={() => dispatch(decrement())}>-</button>
-        <span>{count}</span>
-        <button onClick={() => dispatch(increment())}>+</button>
-      </div>
-      <div>
-        <button onClick={() => dispatch(incrementByAmount(5))}>+5</button>
-      </div> */}
-
       <span>{count}</span>
     </div>
   );
