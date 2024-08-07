@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import SearchDataFun from "./SearchDataFun.jsx";
 import Counter from "./Counter.jsx";
 import * as XLSX from "xlsx";
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export const ThemeContext = React.createContext()
 
@@ -43,6 +45,7 @@ function App() {
 
   return (
     <>
+        <Provider store={store}>
       <ThemeContext.Provider value={darkTheme}>
 
         <div style={themeStyles(darkTheme)}>
@@ -76,7 +79,7 @@ function App() {
           </div>
         </div>
       </ThemeContext.Provider>
-
+      </Provider>
     </>
   );
 }
