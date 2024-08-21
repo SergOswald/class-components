@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchData from "./SearchDataFun.jsx";
+import SearchDataFun from "./SearchDataFun.jsx";
 
 function App() {
 
@@ -18,33 +18,34 @@ function App() {
     fetchData();
   }, []);
 
-// console.log(data) массив объектов работает
+  // console.log(data) массив объектов работает
 
-// не выводит то что в ретен сдался 22-07-2024 app3.tsx выводит все
+  // не выводит то что в ретен сдался 22-07-2024 app3.tsx выводит все
   return (
     <>
       <div className="container">
-        <center>
-          <h1>React project setup. Class components. Error boundary.</h1>
-        </center>
+        <header>
+          <h1 className="header">Forms. Task #5.</h1>
+        </header>
+        <main>
+          <div className="input-button">
+            <input
+              type="search"
+              name="search-form"
+              id="search-form"
+              className="search-input"
+              placeholder="Search user"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+            <button onClick={() => setQuery(value)}>Search</button>
+          </div>
+          <div className="box">
+            <SearchDataFun data={data} query={query} />
+          </div>
 
-        <div className="input-box">
-          <input
-            type="search"
-            name="search-form"
-            id="search-form"
-            className="search-input"
-            placeholder="Search user"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <button onClick={() => setQuery(value)}>Search</button>
-        </div>
+        </main>
 
-        <center>
-        { <SearchDataFun data={data} query={query}/> }
-
-        </center>
       </div>
     </>
   );
