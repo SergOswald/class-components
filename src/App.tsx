@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import SearchDataFun from "./SearchDataFun.jsx";
+import MyForm from './MyForm';
 
 function App() {
 
@@ -45,6 +46,9 @@ function App() {
           </div>
 
         </main>
+        <footer>
+          <MyForm />
+        </footer>
 
       </div>
     </>
