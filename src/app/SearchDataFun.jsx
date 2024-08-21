@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import CheckboxComponent from './CheckboxComponent';
+import CheckboxComponent from '../CheckboxComponent';
 
 function SearchDataFun({ data, query, setSelectedData, selectedData }) {
   const search_parameters = Object.keys(Object.assign({}, ...data));

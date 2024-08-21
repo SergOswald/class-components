@@ -1,20 +1,20 @@
-import type { Metadata } from 'next'
+"use client";
 
-export const metadata: Metadata = {
-  title: 'React learning',
-  description: 'My App is react learning lesson',
-}
+import React from 'react';
+import './App.css';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const ThemeContext = React.createContext();
+
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body>
-        <div id="root">{children}</div>
+        <Provider store={store}>
+          {children}
+        </Provider>
       </body>
     </html>
-  )
+  );
 }

@@ -1,10 +1,10 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import SearchDataFun from "./SearchDataFun.jsx";
-import Counter from "./Counter.jsx";
+import SearchDataFun from "./app/SearchDataFun.jsx";
+import Counter from "./app/Counter.jsx";
 import * as XLSX from "xlsx";
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './app/store';
 
 export const ThemeContext = React.createContext()
 
@@ -45,40 +45,40 @@ function App() {
 
   return (
     <>
-        <Provider store={store}>
-      <ThemeContext.Provider value={darkTheme}>
+      <Provider store={store}>
+        <ThemeContext.Provider value={darkTheme}>
 
-        <div style={themeStyles(darkTheme)}>
-          <div className="container">
-            <header>
-              <button onClick={toggleTheme}>Toggle Theme</button>
-              <h1 className="header">Redux. Redux Toolkit, RTK Query. Context api. Task #3.</h1>
-            </header>
-            <main>
-              <div className="input-button">
-                <input
-                  type="search"
-                  name="search-form"
-                  id="search-form"
-                  className="search-input"
-                  placeholder="Search user"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                />
-                <button onClick={() => setQuery(value)}>Search</button>
-              </div>
-              <div className="box">
-                <SearchDataFun data={data} query={query} setSelectedData={setSelectedData} selectedData={selectedData} />
-              </div>
+          <div style={themeStyles(darkTheme)}>
+            <div className="container">
+              <header>
+                <button onClick={toggleTheme}>Toggle Theme</button>
+                <h1 className="header">Task #4.</h1>
+              </header>
+              <main>
+                <div className="input-button">
+                  <input
+                    type="search"
+                    name="search-form"
+                    id="search-form"
+                    className="search-input"
+                    placeholder="Search user"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                  />
+                  <button onClick={() => setQuery(value)}>Search</button>
+                </div>
+                <div className="box">
+                  <SearchDataFun data={data} query={query} setSelectedData={setSelectedData} selectedData={selectedData} />
+                </div>
 
-            </main>
-            <footer>
-              {<Counter/>}
-              <button onClick={downloadExcel}>Download</button>
-            </footer>
+              </main>
+              <footer>
+                {<Counter />}
+                <button onClick={downloadExcel}>Download</button>
+              </footer>
+            </div>
           </div>
-        </div>
-      </ThemeContext.Provider>
+        </ThemeContext.Provider>
       </Provider>
     </>
   );

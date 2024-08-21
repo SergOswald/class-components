@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchDataFun from "./SearchDataFun.jsx";
+import SearchDataFun from "./app/SearchDataFun.jsx";
 
 function App() {
 
