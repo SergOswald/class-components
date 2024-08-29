@@ -9,8 +9,17 @@ const MyForm = () => {
     password: "",
     password_confirm: "",
     country: "",
-    gender: "Mail",
+    file: null ,
+    gender: "Male",
   });
+
+    const handleFileChange = (e) => {
+    const file = e.target.files[0];  // Get the selected file
+    setFormData({
+      ...formData,
+      file: file,
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,11 +28,6 @@ const MyForm = () => {
       [name]: value,
     });
   };
-
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     console.log('Form data:', formData);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,26 +103,35 @@ const MyForm = () => {
         />
       </div>
       <div>
+        <label>Picture:</label>
+        <input
+          type="file"
+          name="file"
+          onChange={handleFileChange}
+        />
+      </div>
+      <div>
         <label>Gender:</label>
         <div>
-          <label forname="gen1">Mail</label>
+          <label forename="gen1">Mail</label>
           <input
             id="gen1"
             type="radio"
-            name="mail"
-            checked
-            value={formData.gender}
+            name="gender"
+            value="Male"
             onChange={handleChange}
+            checked={formData.gender === "Male"}
           />
         </div>
         <div>
-          <label forname="gen2">Femail</label>
+          <label forename="gen2">Female</label>
           <input
             id="gen2"
             type="radio"
-            name="mail"
-            value={formData.gender}
+            name="gender"
+            value="Female"
             onChange={handleChange}
+            checked={formData.gender === "Female"}
           />
         </div>
       </div>
