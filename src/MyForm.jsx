@@ -11,7 +11,18 @@ const MyForm = () => {
     country: "",
     file: null ,
     gender: "Male",
+    acceptTerms: false,
   });
+
+   const [error, setError] = useState(""); // State for error messages
+
+    const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value, // Handle checkbox and other inputs
+    });
+  };
 
     const handleFileChange = (e) => {
     const file = e.target.files[0];  // Get the selected file
@@ -21,25 +32,39 @@ const MyForm = () => {
     });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Reset error message
+    setError("");
+
+    // Ensure all required fields are filled
     if (!formData.name || !formData.email || !formData.password) {
-      alert("All fields are required!");
+      setError("All fields are required!");
       return;
     }
+
     // Email validation
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      alert("Email address is invalid!");
+      setError("Email address is invalid!");
       return;
     }
+
+    // Check if terms and conditions are accepted
+    if (!formData.acceptTerms) {
+      setError("You must accept the terms and conditions to proceed.");
+      return;
+    }
+
+    // If everything is fine, submit the form
     console.log("Form data:", formData);
   };
 
@@ -135,6 +160,17 @@ const MyForm = () => {
           />
         </div>
       </div>
+            <div>
+        <label>Terms and conditions:</label>
+        <input
+          type="checkbox"
+          name="acceptTerms"
+          onChange={handleChange}
+          checked={formData.acceptTerms} // Compare with boolean value
+        />
+        <span>acceptTerms field must be true</span>
+      </div>
+      {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error if any */}
       <button type="submit">Submit</button>
     </form>
   );
