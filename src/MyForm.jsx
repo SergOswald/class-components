@@ -9,14 +9,14 @@ const MyForm = () => {
     password: "",
     password_confirm: "",
     country: "",
-    file: null ,
+    file: null,
     gender: "Male",
     acceptTerms: false,
   });
 
-   const [error, setError] = useState(""); // State for error messages
+  const [error, setError] = useState(""); // State for error messages
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -24,25 +24,17 @@ const MyForm = () => {
     });
   };
 
-    const handleFileChange = (e) => {
-    const file = e.target.files[0];  // Get the selected file
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Get the selected file
     setFormData({
       ...formData,
       file: file,
     });
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Reset error message
     setError("");
 
@@ -55,6 +47,21 @@ const MyForm = () => {
     // Email validation
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
       setError("Email address is invalid!");
+      return;
+    }
+
+    // Password validation: 1 lowercase letter, 1 uppercase letter, 1 special character
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{1,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      setError(
+        "Password must contain at least 1 lowercase letter, 1 uppercase letter, and 1 special character."
+      );
+      return;
+    }
+
+    // Password confirm validation
+    if (formData.password !== formData.password_confirm) {
+      setError("Passwords do not match!");
       return;
     }
 
@@ -129,11 +136,7 @@ const MyForm = () => {
       </div>
       <div>
         <label>Picture:</label>
-        <input
-          type="file"
-          name="file"
-          onChange={handleFileChange}
-        />
+        <input type="file" name="file" onChange={handleFileChange} />
       </div>
       <div>
         <label>Gender:</label>
@@ -160,7 +163,7 @@ const MyForm = () => {
           />
         </div>
       </div>
-            <div>
+      <div>
         <label>Terms and conditions:</label>
         <input
           type="checkbox"
@@ -170,7 +173,8 @@ const MyForm = () => {
         />
         <span>acceptTerms field must be true</span>
       </div>
-      {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error if any */}
+      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+      {/* Display error if any */}
       <button type="submit">Submit</button>
     </form>
   );
