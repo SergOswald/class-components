@@ -77,7 +77,7 @@ const MyForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="card">
         <label>Name:</label>
         <input
           type="text"
@@ -87,7 +87,7 @@ const MyForm = () => {
         />
         <span>first letter must be uppercase</span>
       </div>
-      <div>
+      <div className="card">
         <label>Age:</label>
         <input
           type="text"
@@ -96,7 +96,7 @@ const MyForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="card">
         <label>Email:</label>
         <input
           type="email"
@@ -105,7 +105,7 @@ const MyForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="card">
         <label>Password:</label>
         <input
           type="password"
@@ -115,7 +115,7 @@ const MyForm = () => {
         />
         <span>1 lowercase letter, 1 uppercase letter, 1 special character</span>
       </div>
-      <div>
+      <div className="card">
         <label>Password Confirm:</label>
         <input
           type="password"
@@ -125,7 +125,7 @@ const MyForm = () => {
         />
         <span>must match with password</span>
       </div>
-      <div>
+      <div className="card">
         <label>Country:</label>
         <input
           type="text"
@@ -134,13 +134,13 @@ const MyForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="card">
         <label>Picture:</label>
         <input type="file" name="file" onChange={handleFileChange} />
       </div>
       <div>
         <label>Gender:</label>
-        <div>
+        <div className="gender">
           <label forename="gen1">Mail</label>
           <input
             id="gen1"
@@ -151,7 +151,7 @@ const MyForm = () => {
             checked={formData.gender === "Male"}
           />
         </div>
-        <div>
+        <div className="gender">
           <label forename="gen2">Female</label>
           <input
             id="gen2"
@@ -163,7 +163,7 @@ const MyForm = () => {
           />
         </div>
       </div>
-      <div>
+      <div className="gender">
         <label>Terms and conditions:</label>
         <input
           type="checkbox"
@@ -173,6 +173,7 @@ const MyForm = () => {
         />
         <span>acceptTerms field must be true</span>
       </div>
+
       {error && <p style={{ color: "red" }}>{error}</p>}{" "}
       {/* Display error if any */}
       <button type="submit">Submit</button>
